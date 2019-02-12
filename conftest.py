@@ -1,7 +1,7 @@
 # tests directory-specific settings - this file is run automatically
 # by pytest before any tests are run
 
-import pytest, sys, re, json, inspect, getopt
+import pytest, sys, re, json, inspect, getopt, re
 from pathlib import Path
 from os.path import abspath, dirname, join
 from utils.mem import use_gpu
@@ -39,7 +39,7 @@ def pytest_collection_modifyitems(config, items):
 
 @pytest.fixture(scope="session", autouse=True)
 def start_doctest_collector(request):
-    matching = [s for s in set(sys.argv) if "test_" in s]
+    matching = [s for s in set(sys.argv) if re.match(r'.*test_\w+\.py$',s)]
     if not matching:
         request.addfinalizer(stop_doctest_collector)
    
@@ -51,16 +51,8 @@ def set_default(obj):
 def stop_doctest_collector():
     encoded_map = json.dumps(RegisterTestsperAPI.apiTestsMap, indent=2, default=set_default)
     fastai_dir = abspath(join(dirname( __file__ ), '..', 'fastai'))
-    print('\n\n')
-    print(json.dumps(obj=encoded_map, indent = 4, sort_keys=True))
-    print('\n\n')
     with open(fastai_dir + '/TestAPIRegister.json', 'w') as f:
         json.dump(obj=encoded_map,fp=f, indent = 4, sort_keys= True)   
-## THIS GOES OUT LATER
-    print('\n\n')
-    from pprint import pprint 
-    with open(fastai_dir + '/TestAPIRegister.json', 'r') as f:
-        pprint(json.load(fp=f))           
 
 @pytest.fixture
 def helpers():
