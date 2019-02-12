@@ -15,7 +15,8 @@ def learn():
     return learn
 
 def test_lr_find(learn, request):
-    this_tests(Learner.lr_find)
+## TO DO: incorrect, just to check double entry   
+    this_tests(Learner.fit)
     wd, start_lr, num_it, end_lr = 0.002, 1e-06, 90, 10
     lr_find(learn=learn, start_lr=start_lr, end_lr=end_lr, num_it=num_it, stop_div=True, wd=wd)
     assert len(learn.recorder.moms) == len(learn.recorder.lrs)
