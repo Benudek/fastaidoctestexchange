@@ -50,7 +50,9 @@ class RegisterTestsperAPI:
         print('###############################################################\n\n\n\n')    
         ###
 
-        list_test = [{'file: '+ basename(pathfilename), 'test: ' + test_function_name , 'line: ' + str(lineno_parentfunc)}]
+        list_test = [{'file': basename(pathfilename), 'test': test_function_name , 'line': str(lineno_parentfunc)}]
+
+        #list_test = [{'file: '+ basename(pathfilename), 'test: ' + test_function_name , 'line: ' + str(lineno_parentfunc)}]
         print('\n############ list_test =' + str(list_test))
         fq_apiname = full_name_with_qualname(testedapi)
         print('\n############ fq_apiname =' + str(fq_apiname))
