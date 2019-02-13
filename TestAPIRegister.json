@@ -5,7 +5,7 @@
             "line: 16",
             "test: test_lr_find"
         ],
-        [
+        [ --> better {
             "test: test_fit",
             "file: test_train.py",
             "line: 29"
@@ -19,3 +19,7 @@
         ]
     ]
 }
+
+
+--> EXAMPLE FILE: wrong test registered, just to show several tests per API possible
+--> Question: json.dump seems to create an array [[ for what as build as a dictionary [{
