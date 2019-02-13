@@ -1,25 +1,21 @@
 {
     "fastai.basic_train.Learner.fit": [
-        [
-            "file: test_train.py",
-            "line: 16",
-            "test: test_lr_find"
-        ],
-        [ --> better {
-            "test: test_fit",
-            "file: test_train.py",
-            "line: 29"
-        ]
+        {
+            "file": "test_train.py",
+            "line": "16",
+            "test": "test_lr_find"
+        },
+        {
+            "file": "test_train.py",
+            "line": "29",
+            "test": "test_fit"
+        }
     ],
     "fastai.train.fit_one_cycle": [
-        [
-            "line: 37",
-            "file: test_train.py",
-            "test: test_fit_one_cycle"
-        ]
+        {
+            "file": "test_train.py",
+            "line": "37",
+            "test": "test_fit_one_cycle"
+        }
     ]
 }
-
-
---> EXAMPLE FILE: wrong test registered, just to show several tests per API possible
---> Question: json.dump seems to create an array [[ for what as build as a dictionary [{
