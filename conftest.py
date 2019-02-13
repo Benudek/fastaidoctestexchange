@@ -49,10 +49,10 @@ def set_default(obj):
      raise TypeError 
 
 def stop_doctest_collector():
-    encoded_map = json.dumps(RegisterTestsperAPI.apiTestsMap, indent=2, default=set_default)
     fastai_dir = abspath(join(dirname( __file__ ), '..', 'fastai'))
+    print('################ RegisterTestsperAPI.apiTestsMap: ' + str(RegisterTestsperAPI.apiTestsMap))
     with open(fastai_dir + '/TestAPIRegister.json', 'w') as f:
-        json.dump(obj=encoded_map,fp=f, indent = 4, sort_keys= True)   
+        json.dump(obj=RegisterTestsperAPI.apiTestsMap,fp=f, indent = 4, sort_keys= True, default=set_default )   
 
 @pytest.fixture
 def helpers():
