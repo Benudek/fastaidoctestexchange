@@ -1,5 +1,6 @@
 import sys, inspect, re
 from os.path import basename, split
+## import /nbdoctest.py ## see below
 
 __all__ = ['this_tests']
 
@@ -14,6 +15,7 @@ def set_default(obj):
           return list(obj)
      raise TypeError 
 
+## TO DO: next two functions should go out and get imported from /nbdoctest.py#L92
 def get_parent_func(lineno, lines):
     for idx,l in enumerate(reversed(lines[:lineno])):
         if re.match(f'^def test', l):
@@ -49,9 +51,11 @@ class RegisterTestsperAPI:
         ###
 
         list_test = [{'file: '+ basename(pathfilename), 'test: ' + test_function_name , 'line: ' + str(lineno_parentfunc)}]
+        print('\n############ list_test =' + str(list_test))
         fq_apiname = full_name_with_qualname(testedapi)
+        print('\n############ fq_apiname =' + str(fq_apiname))
         if(fq_apiname in RegisterTestsperAPI.apiTestsMap):
             RegisterTestsperAPI.apiTestsMap[fq_apiname] = RegisterTestsperAPI.apiTestsMap[fq_apiname]  + list_test
         else:
             RegisterTestsperAPI.apiTestsMap[fq_apiname] =  list_test   
-        
+        print('\n############ RegisterTestsperAPI.apiTestsMap[fq_apiname] =' + str(RegisterTestsperAPI.apiTestsMap[fq_apiname]))
